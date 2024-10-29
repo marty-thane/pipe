@@ -6,21 +6,21 @@ from tensorflow.keras import models, layers
 EPOCHS = 50
 BATCH_SIZE = 32
 
-# Load the training data
+# Load training data
 _, X_train = wavfile.read("in.wav")
 _, y_train = wavfile.read("out.wav")
 
-# Reshape for LSTM layer
+# Reshape to what layers expect
 X_train = X_train.reshape(-1,1,1)
 y_train = y_train.reshape(-1,1)
 
-# Define the model architecture
+# Define model architecture
 model = models.Sequential([
     layers.LSTM(20, input_shape=(1, 1)),
     layers.Dense(1),
 ])
 
-# Compile the model (mazbe change optimizer?)
+# Compile model (maybe change optimizer?)
 model.compile(optimizer='adam', loss='mean_squared_error')
 
 # Train on data
